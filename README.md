@@ -1,7 +1,7 @@
 # pfam2go
 A Python package designed for a quick search for GO terms given a list of corresponding Pfam accession numbers.
 
-The pfam2go method is designed to take an interable object (list, pd.Series, etc.) that cobtains several Pfam accession numbers, and outputs a pandas Dataframe with all corresponding GO terms along with their characteristics (name, function, short description).
+The pfam2go method is designed to take an interable object (list, pd.Series, etc.) that contains several Pfam accession numbers, and outputs a pandas Dataframe with all corresponding GO terms along with their characteristics (name, function, short description).
 
 The list of GO terms corresponding to specific Pfam numbers is taken from:
 http://current.geneontology.org/ontology/external2go/pfam2go

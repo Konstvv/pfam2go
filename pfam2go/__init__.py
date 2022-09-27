@@ -1,18 +1,24 @@
 import pandas as pd
 import urllib.request
 import urllib.error
-import logging
 import requests
 import sys
 import re
 import json
 from urllib.parse import quote
 
+"""
+pfam2go
+
+A package to match Pfam accession numbers to corresponding GO terms.
+"""
+
+__version__ = "1.0.0"
+__author__ = 'Konstantin Volzhenin'
+__credits__ = 'Sorbonne University, LCQB'
+
 
 def init():
-    logging.basicConfig(format='%(messages)s')
-    log = logging.getLogger()
-
     url = 'http://current.geneontology.org/ontology/external2go/pfam2go'
 
     try:
@@ -66,7 +72,6 @@ def _raw_data_to_frame(raw_data):
 
 
 def _quickgo_search(query):
-    print(query)
     request_url = "https://www.ebi.ac.uk/QuickGO/services/ontology/go/terms/{}".format(quote(query))
 
     r = requests.get(request_url, headers={"Accept": "application/json"})

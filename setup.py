@@ -9,7 +9,7 @@ setup(
     author_email='Konstantin_v_v@outlook.com',
     license='MIT',
     packages=['pfam2go'],
-    install_requires=['requests', 'pandas'],
+    install_requires=['requests', 'pandas', 'typing'],
 
     classifiers=[
         'Intended Audience :: Science/Research',

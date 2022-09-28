@@ -5,6 +5,7 @@ import requests
 import sys
 import re
 import json
+from typing import Iterable, Union
 from urllib.parse import quote
 
 """
@@ -18,7 +19,7 @@ __author__ = 'Konstantin Volzhenin'
 __credits__ = 'Sorbonne University, LCQB'
 
 
-def init():
+def data_init() -> pd.DataFrame:
     url = 'http://current.geneontology.org/ontology/external2go/pfam2go'
 
     try:
@@ -26,10 +27,10 @@ def init():
         raw_data = uf.read().decode("utf-8")
         data = _raw_data_to_frame(raw_data)
     except urllib.error.HTTPError:
-        # log.warning(
-        #     "WARNING: The mapping from the original website "
-        #     "http://current.geneontology.org/ontology/external2go/pfam2go could not be processed. \n "
-        #     "Probably, it was deleted or changed. The backup version will be used. Please report this warning.")
+        sys.stderr.write(
+            "WARNING: The mapping from the original website "
+            "http://current.geneontology.org/ontology/external2go/pfam2go could not be processed. \n "
+            "Probably, it was deleted or changed. The backup version will be used. Please report this warning.")
         with open('pfam2go_backup', 'r') as f:
             raw_data = f.read()
             data = _raw_data_to_frame(raw_data)
@@ -37,8 +38,8 @@ def init():
     return data
 
 
-def pfam2go(pfam_seqs):
-    data = init()[['Pfam accession', 'GO accession']]
+def pfam2go(pfam_seqs: Union[Iterable[str], str]) -> pd.DataFrame:
+    data = data_init()[['Pfam accession', 'GO accession']]
 
     if type(pfam_seqs) is str:
         pfam_list = [pfam_seqs]
@@ -51,12 +52,12 @@ def pfam2go(pfam_seqs):
 
     data_match = data[data['Pfam accession'].isin(pfam_list)].reset_index(drop=True)
 
-    data_match[['name', 'definition.text', 'aspect']] = data_match['GO accession'].apply(_quickgo_search)
+    data_match[['name', 'definition', 'aspect']] = data_match['GO accession'].apply(_quickgo_search)
 
     return data_match
 
 
-def _raw_data_to_frame(raw_data):
+def _raw_data_to_frame(raw_data: str) -> pd.DataFrame:
     data = raw_data.splitlines()
     data = [i for i in data if '!' not in i]
 
@@ -71,7 +72,7 @@ def _raw_data_to_frame(raw_data):
     return pd.DataFrame.from_records(data_listed, columns=('Pfam accession', 'Pfam name', 'GO name', 'GO accession'))
 
 
-def _quickgo_search(query):
+def _quickgo_search(query: str) -> pd.Series:
     request_url = "https://www.ebi.ac.uk/QuickGO/services/ontology/go/terms/{}".format(quote(query))
 
     r = requests.get(request_url, headers={"Accept": "application/json"})

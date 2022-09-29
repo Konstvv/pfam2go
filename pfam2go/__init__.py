@@ -16,7 +16,7 @@ A package to match Pfam accession numbers to corresponding GO terms.
 pfam2go method provides the Go term accession number, the name along with a short description and the function type.
 '''
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __author__ = 'Konstantin Volzhenin'
 __credits__ = 'Sorbonne University, LCQB'
 

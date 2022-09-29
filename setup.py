@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pfam2go',
-    version='1.0.0',
+    version='1.1.0',
     description='A package to match Pfam accession numbers to corresponding GO terms',
     url='https://github.com/Konstvv/pfam2go',
     author='Konstantin Volzhenin',

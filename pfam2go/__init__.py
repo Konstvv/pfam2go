@@ -16,7 +16,7 @@ A package to match Pfam accession numbers to corresponding GO terms.
 pfam2go method provides the Go term accession number, the name along with a short description and the function type.
 '''
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 __author__ = 'Konstantin Volzhenin'
 __credits__ = 'Sorbonne University, LCQB'
 
@@ -25,8 +25,8 @@ def pfam2go(pfam_seqs: Union[Iterable[str], str]) -> pd.DataFrame:
     :param pfam_seqs: string or an Iterable object containing strings (e.g, list).
     :return pd.Dataframe containing GO terms for all corresponding Pfam numbers. Dataframe contains 5 string fields:
         - Pfam accession number
-        - GO accession number,
-        - GO name,
+        - GO accession number
+        - GO name
         - GO definition
         - GO functional aspect
 

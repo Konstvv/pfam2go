@@ -17,10 +17,11 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     long_description="""
-# pfam2go
-The pfam2go package provides a short and simple interface to match the Pfam accesion numbres to Gene Ontology annotation data.
+# pfam2go 
+The pfam2go package provides a short and simple interface to match the Pfam accesion numbres to Gene Ontology annotation data.    
 The Pfam - Go term mapping was taken from:
 >http://current.geneontology.org/ontology/external2go/pfam2go
+> 
 >Mitchell et al. (2015) Nucl. Acids Res. 43 :D213-D221
 
 The Go term information is taken from QuickGO:
@@ -39,9 +40,11 @@ pip install pfam2go
 pfam2go(pfam_seqs: Union[Iterable[str], str]) -> pd.DataFrame
 ```
 Input:
-pfam_seqs: string or an Iterable object containing strings (e.g., list or pd.Series).
+
+<em>pfam_seqs</em>: string or an Iterable object containing strings (e.g., list or pd.Series).
 
 Returns:
+
 pd.Dataframe containing GO terms for all corresponding Pfam numbers. Dataframe contains 5 string fields: 
 - Pfam accession number 
 - GO accession number

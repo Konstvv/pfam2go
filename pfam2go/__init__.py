@@ -20,7 +20,6 @@ __version__ = "1.1.2"
 __author__ = 'Konstantin Volzhenin'
 __credits__ = 'Sorbonne University, LCQB'
 
-
 def pfam2go(pfam_seqs: Union[Iterable[str], str]) -> pd.DataFrame:
     """
     :param pfam_seqs: string or an Iterable object containing strings (e.g, list).

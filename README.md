@@ -1,7 +1,4 @@
 # pfam2go 
-
-Hello!
-
 The pfam2go package provides a short and simple interface to match the Pfam accesion numbres to Gene Ontology annotation data.    
 The Pfam - Go term mapping was taken from:
 >http://current.geneontology.org/ontology/external2go/pfam2go
